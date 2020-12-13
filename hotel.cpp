@@ -70,7 +70,7 @@ class Hotel {
 
         // Если клиент не смог купить ни одну комнату, выводим сообщение об этом.
         printf("Day%d %d:00 -> Client %d from city %d arrived to the hotel"
-                " but couldn't afford any free room\n",
+                " but couldn't afford any spare room\n",
                 day, hour, client.clientId, client.cityId);
     }
     
@@ -167,15 +167,16 @@ void* produceClients(void* arg) {
 
 // argv[1] - количество городов.
 // argv[2] - общее количество клиентов.
-// argv[3] - кол-во милисекунд для одного часа симуляции (по-умолчанию = 1000).
+// argv[3] - кол-во милисекунд для одного часа симуляции (по умолчанию = 1000).
 // argv[4] - максимальное кол-во милисекунд, на которое засыпают потоки
-//           после отправки клиента в гостинницу (по-умолчанию = 1000).
+//           после отправки клиента в гостинницу (по умолчанию = 1000).
 int main(int argc, char** argv) {
-
+    
     if(argc < 3) {
         std::cout << "Too few arguments\n";
         return 1;
     }
+    srand(time(0));
 
     // Получаем аргументы командной строки.
     int numberOfCities = std::stoi(argv[1]);
